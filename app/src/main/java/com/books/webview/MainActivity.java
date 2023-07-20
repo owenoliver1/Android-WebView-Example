@@ -13,6 +13,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
+import android.webkit.CookieManager;
 import android.webkit.DownloadListener;
 import android.webkit.MimeTypeMap;
 import android.webkit.SslErrorHandler;
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebViewClient(new myWebViewclient());
-        webView.getSettings().setUserAgentString("Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7412.EU");
+        //webView.getSettings().setUserAgentString("Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7412.EU");
+        CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true);
         webView.loadUrl(url);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
