@@ -22,6 +22,8 @@ import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     SwipeRefreshLayout swipeRefreshLayout;
 
-    String url = "http://codeflarelimited.com";
+    String url = "http://m.reddit.com";
 
 //    final String filename= URLUtil.guessFileName(URLUtil.guessUrl(url));
 
@@ -39,17 +41,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
 
         webView = findViewById(R.id.web);
         progressBar = findViewById(R.id.progress);
         swipeRefreshLayout = findViewById(R.id.swipe);
 
-
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setSupportZoom(false);
         webView.getSettings().setDomStorageEnabled(true);
         webView.setWebViewClient(new myWebViewclient());
+        webView.getSettings().setUserAgentString("Mozilla/5.0 (Nintendo 3DS; U; ; en) Version/1.7412.EU");
         webView.loadUrl(url);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
